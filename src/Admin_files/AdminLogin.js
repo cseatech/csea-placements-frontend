@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { server_url } from "../api";
 const axios = require("axios");
 const localStorage = require("local-storage");
 class AdminLogin extends Component {
@@ -17,7 +16,7 @@ class AdminLogin extends Component {
     e.preventDefault();
     const { uname, pword } = this.state;
     axios
-      .post(server_url + "/api/users/login-admin", {
+      .post(process.env.REACT_APP_SERVER_URL + "/api/users/login-admin", {
         username: uname,
         password: pword,
       })
@@ -58,7 +57,7 @@ class AdminLogin extends Component {
                     onChange={this.onChange}
                     autoComplete="off"
                     placeholder="Username"
-                    style={{ border: "2px solid gray",borderRadius: '8px', padding: "8px" }}
+                    style={{ border: "2px solid gray", borderRadius: '8px', padding: "8px" }}
                   />
                 </center>
               </div>
@@ -74,7 +73,7 @@ class AdminLogin extends Component {
                     value={pword}
                     onChange={this.onChange}
                     placeholder="Password"
-                    style={{ border: "2px solid gray",borderRadius: '8px', padding: "8px" }}
+                    style={{ border: "2px solid gray", borderRadius: '8px', padding: "8px" }}
                   />
                 </center>
               </div>
@@ -84,10 +83,10 @@ class AdminLogin extends Component {
                 <p>
                   <center>
                     <button style={{
-                        padding:'8px',
-                        borderRadius:'8px',
-                        backgroundColor:'black',
-                        color:'white'
+                      padding: '8px',
+                      borderRadius: '8px',
+                      backgroundColor: 'black',
+                      color: 'white'
                     }} onClick={this.onSubmit}>Login</button>
                   </center>
                 </p>

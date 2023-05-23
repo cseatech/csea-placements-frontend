@@ -9,7 +9,6 @@ import {
   isBrowser,
   isMobile
 } from "react-device-detect";
-import { server_url } from '../api';
 const localStorage = require('local-storage')
 
 const axios = require('axios')
@@ -36,7 +35,7 @@ class ViewFullExp extends Component {
     const { _id, name, year, company, exptext, linkedinlink } = localStorage.get('indets')
 
     var strj
-    axios.get(server_url + '/api/experiences/getfile/' + _id).then(function (response) {
+    axios.get(process.env.REACT_APP_SERVER_URL + '/api/experiences/getfile/' + _id).then(function (response) {
 
       strj = response.data.message[0].experiencefile
       obj = document.createElement('object');
@@ -62,7 +61,7 @@ class ViewFullExp extends Component {
     this.setState({ ondownload: true })
     const { _id, name, year, company, exptext, linkedinlink, experiencefile } = localStorage.get('indets')
 
-    axios.get(server_url + '/api/experiences/getfile/' + _id).then(function (response) {
+    axios.get(process.env.REACT_APP_SERVER_URL + '/api/experiences/getfile/' + _id).then(function (response) {
       var strj = response.data.message[0].experiencefile
       var base64 = btoa(
         new Uint8Array(strj)

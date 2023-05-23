@@ -6,7 +6,6 @@ import { MDBListGroup, MDBListGroupItem, MDBIcon, MDBCol, MDBBtn } from 'mdbreac
 // import { HashLink as Link } from "react-router-hash-link";
 import cseaLogo1 from "../assets/img/csea_black1.png"
 // import { $ } from "react-jquery-plugin";
-import { server_url } from '../api';
 const localStorage = require('local-storage')
 
 const axios = require('axios')
@@ -42,7 +41,7 @@ class ViewExp extends Component {
     localStorage.set('indets', this.state.dets[ind])
     const { _id, name, year, company, exptext, linkedinlink, experiencefile } = localStorage.get('indets')
 
-    axios.get(server_url + '/api/experiences/getfile/' + _id).then(function (response) {
+    axios.get(process.env.REACT_APP_SERVER_URL + '/api/experiences/getfile/' + _id).then(function (response) {
       var strj = response.data.message[0].experiencefile
       var base64 = btoa(
         new Uint8Array(strj)
@@ -65,7 +64,7 @@ class ViewExp extends Component {
   }
   componentDidMount() {
     var self = this
-    axios.get(server_url + '/api/experiences/getallexp', { mode: 'cors' }).then(function (response) {
+    axios.get(process.env.REACT_APP_SERVER_URL + '/api/experiences/getallexp', { mode: 'cors' }).then(function (response) {
       self.setState({ dets: response.data.message, onload: false })
     })
       .catch((e) => {
@@ -92,7 +91,9 @@ class ViewExp extends Component {
 
         <div class="basic-card basic-card-aqua">
           <div class="card-content">
-            <span class="card-title">{det.name}</span>
+            {det.linkedinlink != "-" ? <a style={{ color: "white" }} href={det.linkedinlink} target='_blank'>
+              <span class="card-title">{det.name}</span>
+            </a> : <span class="card-title">{det.name}</span>}
             <p class="card-text">
               {det.company}<br></br>
               {det.year}
@@ -117,7 +118,7 @@ class ViewExp extends Component {
     }
     else {
       var self = this
-      axios.get(server_url + '/api/experiences/getbycompany/' + self.state.search_text).then(function (response) {
+      axios.get(process.env.REACT_APP_SERVER_URL + '/api/experiences/getbycompany/' + self.state.search_text).then(function (response) {
         console.log(response);
         self.setState({ dets: response.data.message, search_text: self.state.search_text, onload: false })
         if (response.data.message.length == 0) {
@@ -140,7 +141,7 @@ class ViewExp extends Component {
     self.setState({ onload: true })
     self.setState({ emptydata: false })
     if (cmpny.company == 'All') {
-      axios.get(server_url + '/api/experiences/getallexp').then(function (response) {
+      axios.get(process.env.REACT_APP_SERVER_URL + '/api/experiences/getallexp').then(function (response) {
         self.setState({ dets: response.data.message, search_text: self.state.search_text, onload: false })
 
         if (response.data.message.length == 0) {
@@ -156,7 +157,7 @@ class ViewExp extends Component {
 
     }
     else {
-      axios.get(server_url + '/api/experiences/getbycompany/' + cmpny.company).then(function (response) {
+      axios.get(process.env.REACT_APP_SERVER_URL + '/api/experiences/getbycompany/' + cmpny.company).then(function (response) {
 
 
         if (response.data.message.length == 0) {

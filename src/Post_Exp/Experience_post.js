@@ -4,7 +4,6 @@ import { $ } from 'react-jquery-plugin'
 import axios from 'axios';
 import FileBase64 from 'react-file-base64';
 import cseaLogo1 from "../assets/img/csea_black1.png";
-import { server_url } from '../api';
 const validator = require('validator')
 
 var result = ''
@@ -57,7 +56,7 @@ class Experience_post extends Component {
 
 
 
-      axios.post(server_url + '/api/experiences/add-exp', { uname: uname, email: email, year: year, company: company, linkedIn: linkedIn, selectedFile: selectedFile }, { headers: headers }).then(res => {
+      axios.post(process.env.REACT_APP_SERVER_URL + '/api/experiences/add-exp', { uname: uname, email: email, year: year, company: company, linkedIn: linkedIn, selectedFile: selectedFile }, { headers: headers }).then(res => {
         this.setState({ post: true });
 
 

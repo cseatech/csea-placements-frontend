@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { server_url } from '../api';
 const axios = require('axios');
 const localStorage = require('local-storage')
 class AdminVerify extends Component {
@@ -12,7 +11,7 @@ class AdminVerify extends Component {
 
     componentDidMount() {
         var self = this
-        axios.get(server_url + '/api/experiences/get-pending-approvals', { headers: { Authorization: localStorage.get('authtoken') } }).then(function (response) {
+        axios.get(process.env.REACT_APP_SERVER_URL + '/api/experiences/get-pending-approvals', { headers: { Authorization: localStorage.get('authtoken') } }).then(function (response) {
             self.setState({ dets: response.data.message })
         })
     }
@@ -20,7 +19,14 @@ class AdminVerify extends Component {
         const { dets } = this.state;
         console.log(this.state)
         if (dets.length == 0) {
-            return <div><p>Hold Up!Data is loading</p></div>
+            return <div>
+                <br /><br />
+                <center><h1>Pending Approals</h1></center>
+                <br /><br />
+                <center>
+                    <p>No pending experiences</p>
+                </center>
+            </div>
         }
         return (
 
@@ -44,7 +50,7 @@ class AdminVerify extends Component {
 
                                     const linkSource = strj;
                                     const downloadLink = document.createElement("a");
-                                    const fileName = "abc.pdf";
+                                    const fileName = "Experience_" + item.name + ".pdf";
                                     downloadLink.href = linkSource;
                                     downloadLink.download = fileName;
                                     downloadLink.click()
@@ -52,7 +58,7 @@ class AdminVerify extends Component {
                                 function verifs() {
 
 
-                                    axios.get(server_url + '/api/experiences/giveapproval/' + item._id, { headers: { Authorization: localStorage.get('authtoken') } }).then(function (response) {
+                                    axios.get(process.env.REACT_APP_SERVER_URL + '/api/experiences/giveapproval/' + item._id, { headers: { Authorization: localStorage.get('authtoken') } }).then(function (response) {
 
                                         window.alert('Verification Success')
                                         window.location.reload(false);
@@ -65,7 +71,7 @@ class AdminVerify extends Component {
                                 }
                                 function dels() {
                                     console.log(item._id)
-                                    axios.get(server_url + '/api/experiences/deletef/' + item._id, { headers: { Authorization: localStorage.get('authtoken') } }).then(function (response) {
+                                    axios.get(process.env.REACT_APP_SERVER_URL + '/api/experiences/deletef/' + item._id, { headers: { Authorization: localStorage.get('authtoken') } }).then(function (response) {
 
                                         window.alert('Deleted Success')
                                         window.location.reload(false);
