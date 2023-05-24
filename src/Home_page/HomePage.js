@@ -13,10 +13,7 @@ import "./style.css";
 import "./style1.css";
 
 class HomePage extends Component {
-
   componentDidMount() {
-
-
     var nav = $("nav");
     var line = $("<div />").addClass("line");
     line.appendTo(".active");
@@ -33,7 +30,6 @@ class HomePage extends Component {
         width: wid,
       });
     }
-
 
     // nav.find(" li a").click(function (e) {
     //   e.preventDefault();
@@ -104,9 +100,9 @@ class HomePage extends Component {
         rect.top >= 0 &&
         rect.left >= 0 &&
         rect.bottom <=
-        (window.innerHeight || document.documentElement.clientHeight) &&
+          (window.innerHeight || document.documentElement.clientHeight) &&
         rect.right <=
-        (window.innerWidth || document.documentElement.clientWidth)
+          (window.innerWidth || document.documentElement.clientWidth)
       );
     }
 
@@ -133,14 +129,12 @@ class HomePage extends Component {
       $("#loader").hide();
     }, 3000);
 
-
     window.addEventListener("load", callbackFunc);
     window.addEventListener("scroll", callbackFunc);
     // Timeline end
 
     (function ($) {
       "use strict";
-
 
       $(window).on("scroll", function () {
         if ($(this).scrollTop() > 100) {
@@ -156,7 +150,7 @@ class HomePage extends Component {
 
       $(document).on("click", 'div[href^="#"]', function (event) {
         event.preventDefault();
-        let id = $(event.target).attr('href');
+        let id = $(event.target).attr("href");
         $(id).toggleClass("block");
         // $(document.getElementById(event.target.href))
         // $("html, body").animate();
@@ -187,17 +181,12 @@ class HomePage extends Component {
           return false;
         });
       });
-
-
     })(jQuery);
-
   }
   render() {
     return (
       <div>
-
         <div id="loader"></div>
-
 
         {/* Navbar start */}
 
@@ -205,7 +194,7 @@ class HomePage extends Component {
           class="container-fluid bg-light position-relative shadow"
           id="starting"
         >
-          <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5" >
+          <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5">
             <a
               href="#about"
               class="navbar-brand font-weight-bold text-secondary"
@@ -215,8 +204,6 @@ class HomePage extends Component {
                 src={cseaLogo1}
                 style={{ height: `80px`, width: `80px`, paddingBottom: `5px` }}
               ></img>
-
-
             </a>
             <button
               type="button"
@@ -229,10 +216,8 @@ class HomePage extends Component {
             <div
               class="collapse navbar-collapse justify-content-between"
               id="navbarCollapse"
-
             >
               <div class="navbar-nav font-weight-bold mx-auto py-0 ">
-
                 <li>
                   <a href="#about" class="nav-item nav-link " id="aboutclick">
                     About
@@ -265,8 +250,6 @@ class HomePage extends Component {
                     <Link style={{ textDecoration: `none` }}>Contact</Link>
                   </a>
                 </li>
-
-
               </div>
             </div>
           </nav>
@@ -564,9 +547,10 @@ class HomePage extends Component {
                       <p class="haha">
                         {" "}
                         The secret to getting ahead is getting started.
-                        Placement being a key to unlock your future, it needs both hard and smart work to be shown in
-                        preparation. To give you an edge, here are some
-                        guidelines to prepare you for the big day!
+                        Placement being a key to unlock your future, it needs
+                        both hard and smart work to be shown in preparation. To
+                        give you an edge, here are some guidelines to prepare
+                        you for the big day!
                       </p>
                       <p>
                         <button class="button1">
@@ -924,7 +908,11 @@ class HomePage extends Component {
                       <h3 class="haha">Give your Experience</h3>
                       <p class="haha">
                         {" "}
-                        Experience, when shared with others, has a greater impact. Shared experiences enable your peers to integrate information and empower them to own their ideas. Do you want to keep the learning alive and encourage future growth?
+                        Experience, when shared with others, has a greater
+                        impact. Shared experiences enable your peers to
+                        integrate information and empower them to own their
+                        ideas. Do you want to keep the learning alive and
+                        encourage future growth?
                       </p>
                       <p>
                         <button class="button1">
@@ -968,8 +956,9 @@ class HomePage extends Component {
                 <div class="discovery">
                   <h1>Clarify the problem statement:</h1>
                   <p>
-                    Before attempting to solve a problem, it is important to understand the problem clearly.Hence it is important to ask right questions.
-
+                    Before attempting to solve a problem, it is important to
+                    understand the problem clearly.Hence it is important to ask
+                    right questions.
                   </p>
                 </div>
               </div>
@@ -980,8 +969,9 @@ class HomePage extends Component {
                 <div class="discovery">
                   <h1>Constraints:</h1>
                   <p>
-                    If there is a clear understanding of the problem statement, the next step is to determine whether there are any specific constraints that must be followed.
-
+                    If there is a clear understanding of the problem statement,
+                    the next step is to determine whether there are any specific
+                    constraints that must be followed.
                   </p>
                 </div>
               </div>
@@ -992,8 +982,9 @@ class HomePage extends Component {
                 <div class="discovery">
                   <h1>Observations:</h1>
                   <p>
-                    Every problem has a peculiar behaviour associated with it. So don't forget to tell the interviewer about all of the observations of that problem.
-
+                    Every problem has a peculiar behaviour associated with it.
+                    So don't forget to tell the interviewer about all of the
+                    observations of that problem.
                   </p>
                 </div>
               </div>
@@ -1004,7 +995,10 @@ class HomePage extends Component {
                 <div class="discovery">
                   <h1>Approaches:</h1>
                   <p>
-                    This is the most crucial part in the entire interview process. If you intend to solve the problem with a data structure, explain why you want to do so. If you're stuck, use the brute force method.
+                    This is the most crucial part in the entire interview
+                    process. If you intend to solve the problem with a data
+                    structure, explain why you want to do so. If you're stuck,
+                    use the brute force method.
                   </p>
                 </div>
               </div>
@@ -1015,7 +1009,10 @@ class HomePage extends Component {
                 <div class="discovery">
                   <h1>Discuss your approach:</h1>
                   <p>
-                    When you've narrowed down your plan and believe you have a solution, talk to the interviewer about it. Accept if the interviewer proposes something new and begin thinking along those lines. Don't be too rigid in your thinking.
+                    When you've narrowed down your plan and believe you have a
+                    solution, talk to the interviewer about it. Accept if the
+                    interviewer proposes something new and begin thinking along
+                    those lines. Don't be too rigid in your thinking.
                   </p>
                 </div>
               </div>
@@ -1026,7 +1023,8 @@ class HomePage extends Component {
                 <div class="discovery">
                   <h1>Edge Cases and counter examples:</h1>
                   <p>
-                    If the solution for the problem is decided, make sure to test it for all possible edge-cases.
+                    If the solution for the problem is decided, make sure to
+                    test it for all possible edge-cases.
                   </p>
                 </div>
               </div>
@@ -1038,11 +1036,13 @@ class HomePage extends Component {
                   <h1>Writing the Code:</h1>
                   <p class="p1">
                     Make sure to check the following:
-
-                    <ol class="p1">a. The code should be readable and understandable.</ol>
+                    <ol class="p1">
+                      a. The code should be readable and understandable.
+                    </ol>
                     <ol class="p1">b. Add comments to your code.</ol>
                     <ol class="p1">
-                      c. Before showing the code to the interviewer, dry run it with a few examples.
+                      c. Before showing the code to the interviewer, dry run it
+                      with a few examples.
                     </ol>
                   </p>
                 </div>
@@ -1080,17 +1080,33 @@ class HomePage extends Component {
                       class="collapsed question"
                       href="#faq1"
                     >
-                      Which programming language should I use?<img style={{ flexDirection: `column-reverse`, width: `15px`, height: `15px`, float: `right` }} src="https://img.icons8.com/ultraviolet/40/000000/down-squared.png" href="#faq1" />
+                      Which programming language should I use?
+                      <img
+                        style={{
+                          flexDirection: `column-reverse`,
+                          width: `15px`,
+                          height: `15px`,
+                          float: `right`,
+                        }}
+                        src="https://img.icons8.com/ultraviolet/40/000000/down-squared.png"
+                        href="#faq1"
+                      />
                       <i class="bi bi-chevron-down icon-show"></i>
                       <i class="bi bi-chevron-up icon-close"></i>
                     </div>
 
                     <div id="faq1" class="collapse" data-bs-parent=".faq-list">
                       <p>
-                        Companies typically give you the option of choosing your preferred programming language, in which case you can do so. If you list a language on your resume, your interviewer can ask you a question about it. As a result, keep that in mind! Make it clear on your resume if you aren't completely confident in a language. Put less-stronger languages under a heading like "Working Knowledge" or give them a star ranking.
+                        Companies typically give you the option of choosing your
+                        preferred programming language, in which case you can do
+                        so. If you list a language on your resume, your
+                        interviewer can ask you a question about it. As a
+                        result, keep that in mind! Make it clear on your resume
+                        if you aren't completely confident in a language. Put
+                        less-stronger languages under a heading like "Working
+                        Knowledge" or give them a star ranking.
                       </p>
                     </div>
-
                   </li>
 
                   <li>
@@ -1099,14 +1115,24 @@ class HomePage extends Component {
                       href="#faq2"
                       class="collapsed question"
                     >
-                      What if I draw a blank and can't answer a question?<img style={{ flexDirection: `column-reverse`, width: `15px`, height: `15px`, float: `right` }} src="https://img.icons8.com/ultraviolet/40/000000/down-squared.png" href="#faq2" />
+                      What if I draw a blank and can't answer a question?
+                      <img
+                        style={{
+                          flexDirection: `column-reverse`,
+                          width: `15px`,
+                          height: `15px`,
+                          float: `right`,
+                        }}
+                        src="https://img.icons8.com/ultraviolet/40/000000/down-squared.png"
+                        href="#faq2"
+                      />
                       <i class="bi bi-chevron-down icon-show"></i>
                       <i class="bi bi-chevron-up icon-close"></i>
                     </div>
                     <div id="faq2" class="collapse" data-bs-parent=".faq-list">
                       <p>
-                        It is ok to not know. The interview process mainly
-                        tests the thinking process/ logical ability rather than
+                        It is ok to not know. The interview process mainly tests
+                        the thinking process/ logical ability rather than
                         providing correct answers. If you are struck, ask your
                         interviewer for help or hint. Don't give up!
                       </p>
@@ -1119,7 +1145,17 @@ class HomePage extends Component {
                       href="#faq3"
                       class="collapsed question"
                     >
-                      How should I behave in a face to face interview?{" "}<img style={{ flexDirection: `column-reverse`, width: `15px`, height: `15px`, float: `right` }} src="https://img.icons8.com/ultraviolet/40/000000/down-squared.png" href="#faq3" />
+                      How should I behave in a face to face interview?{" "}
+                      <img
+                        style={{
+                          flexDirection: `column-reverse`,
+                          width: `15px`,
+                          height: `15px`,
+                          float: `right`,
+                        }}
+                        src="https://img.icons8.com/ultraviolet/40/000000/down-squared.png"
+                        href="#faq3"
+                      />
                       <i class="bi bi-chevron-down icon-show"></i>
                       <i class="bi bi-chevron-up icon-close"></i>
                     </div>
@@ -1139,7 +1175,17 @@ class HomePage extends Component {
                       href="#faq4"
                       class="collapsed question"
                     >
-                      What should I wear for the interview?<img style={{ flexDirection: `column-reverse`, width: `15px`, height: `15px`, float: `right` }} src="https://img.icons8.com/ultraviolet/40/000000/down-squared.png" href="#faq4" />
+                      What should I wear for the interview?
+                      <img
+                        style={{
+                          flexDirection: `column-reverse`,
+                          width: `15px`,
+                          height: `15px`,
+                          float: `right`,
+                        }}
+                        src="https://img.icons8.com/ultraviolet/40/000000/down-squared.png"
+                        href="#faq4"
+                      />
                       <i class="bi bi-chevron-down icon-show"></i>
                       <i class="bi bi-chevron-up icon-close"></i>
                     </div>
@@ -1250,7 +1296,6 @@ class HomePage extends Component {
         </section>
         {/* <!-- End Sponsors Section --> */}
 
-
         {/* Team end */}
 
         <div class="container-fluid pt-5">
@@ -1264,12 +1309,10 @@ class HomePage extends Component {
             <br />
             <br />
 
-            <div class="row">
-              <div class="col-md-6 col-lg-2 text-center team mb-5">
-
-
+            <div class="d-flex flex-wrap justify-content-center">
+              <div class="col-md-6 col-lg-3 text-center team mb-5">
                 <h3>Aarti </h3>
-                <i>3rd year CSE</i>
+                <i>2018-22</i>
                 <br />
                 <a
                   class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
@@ -1281,9 +1324,8 @@ class HomePage extends Component {
                 </a>
               </div>
               <div class="col-md-6 col-lg-3 text-center team mb-5">
-
                 <h3>Lekha Shanthini</h3>
-                <i>3rd year CSE</i>
+                <i>2018-22</i>
                 <br />
                 <a
                   class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
@@ -1295,12 +1337,9 @@ class HomePage extends Component {
                 </a>
               </div>
 
-
-
-              <div class="col-md-6 col-lg-2 text-center team mb-5">
-
+              <div class="col-md-6 col-lg-3 text-center team mb-5">
                 <h3>Niranjan </h3>
-                <i>3rd year CSE</i>
+                <i>2018-22</i>
                 <br />
                 <a
                   class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
@@ -1312,12 +1351,9 @@ class HomePage extends Component {
                 </a>
               </div>
 
-
-
               <div class="col-md-6 col-lg-3 text-center team mb-5">
-
                 <h3>Shruthi </h3>
-                <i>3rd year CSE</i>
+                <i>2018-22</i>
                 <br />
                 <a
                   class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
@@ -1328,10 +1364,10 @@ class HomePage extends Component {
                   <i class="fab fa-linkedin-in"></i>
                 </a>
               </div>
-              {/* <div class="col-md-6 col-lg-2 text-center team mb-5">
+              {/* <div class="col-md-6 col-lg-3 text-center team mb-5">
                
                 <h3>Sowmiya</h3>
-                <i>3rd year CSE</i>
+                <i>2018-22</i>
                 <br />
                 <a
                   class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
@@ -1342,11 +1378,9 @@ class HomePage extends Component {
                   <i class="fab fa-linkedin-in"></i>
                 </a>
               </div> */}
-              <div class="col-md-6 col-lg-2 text-center team mb-5">
-
-
+              <div class="col-md-6 col-lg-3 text-center team mb-5">
                 <h3>Surya </h3>
-                <i>3rd year CSE</i>
+                <i>2018-22</i>
                 <br />
                 <a
                   class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
@@ -1357,12 +1391,35 @@ class HomePage extends Component {
                   <i class="fab fa-linkedin-in"></i>
                 </a>
               </div>
+              <div class="col-md-6 col-lg-3 text-center team mb-5">
+                <h3>Gautham Kumar</h3>
+                <i>2020-24</i>
+                <br />
+                <a
+                  class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                  style={{ width: `38px`, height: `38px` }}
+                  href="https://www.linkedin.com/in/gauthamkumarganesan//"
+                  target="_blank"
+                >
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+              <div class="col-md-6 col-lg-3 text-center team mb-5">
+                <h3>Senthamizhan B</h3>
+                <i>2020-24</i>
+                <br />
+                <a
+                  class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                  style={{ width: `38px`, height: `38px` }}
+                  href="https://www.linkedin.com/in/senthamizhan/"
+                  target="_blank"
+                >
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
             </div>
-
           </div>
         </div>
-
-
 
         {/* <!-- Footer Start --> */}
         <div class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5">
@@ -1377,7 +1434,6 @@ class HomePage extends Component {
                 <span class="text-white " style={{ fontFamily: `Handlee` }}>
                   CSEA
                 </span>
-
               </a>
 
               <div class="d-flex justify-content-start mt-4">
@@ -1413,12 +1469,7 @@ class HomePage extends Component {
                   <i class="fab fa-instagram"></i>
                 </a>
               </div>
-
-
             </div>
-
-
-
 
             <div class="col-lg-3 col-md-6 mb-5">
               <h3 class="text-primary mb-4">Get In Touch</h3>
@@ -1433,17 +1484,22 @@ class HomePage extends Component {
                 <h4 class="fa fa-envelope text-primary"></h4>
                 <div class="pl-3">
                   <h5 class="text-white">Email</h5>
-                  <a href="mailto:placements@abacus.org.in" style={{ color: `white` }}><p> placements@abacus.org.in</p></a>
+                  <a
+                    href="mailto:chairman@abacus.org.in"
+                    style={{ color: `white` }}
+                  >
+                    <p> chairman@abacus.org.in</p>
+                  </a>
                 </div>
               </div>
               <div class="d-flex">
                 <h4 class="fa fa-phone-alt text-primary"></h4>
                 <div class="pl-3">
                   <h5 class="text-white">Phone</h5>
-                  <p>Abinaya S K C</p>
+                  <p>Mahjabeen A</p>
                   <p>+91 8825649922</p>
-                  <p>Varsha A</p>
-                  <p>+91 9489463257</p>
+                  <p>Pranav Chandar KR</p>
+                  <p>+91 9715223575</p>
                 </div>
               </div>
             </div>
@@ -1516,13 +1572,14 @@ class HomePage extends Component {
                 </button>
               </div>
             </form> */}
-              <a href="/exp_post" style={{ textDecoration: `none` }}><button
-                class="btn btn-primary btn-block border-0 py-3"
-                type="submit"
-
-              >
-                Click here to post
-              </button></a>
+              <a href="/exp_post" style={{ textDecoration: `none` }}>
+                <button
+                  class="btn btn-primary btn-block border-0 py-3"
+                  type="submit"
+                >
+                  Click here to post
+                </button>
+              </a>
             </div>
           </div>
           <div
@@ -1531,7 +1588,10 @@ class HomePage extends Component {
           >
             <p class="m-0 text-center text-white">
               &copy;
-              <a class="text-primary font-weight-bold" href="https://cseaceg.org.in/">
+              <a
+                class="text-primary font-weight-bold"
+                href="https://cseaceg.org.in/"
+              >
                 CSEA
               </a>
               . All Rights Reserved.
