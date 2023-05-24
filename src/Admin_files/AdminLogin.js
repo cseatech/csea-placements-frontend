@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import jQuery from "jquery";
+import { $ } from "react-jquery-plugin";
 const axios = require("axios");
 const localStorage = require("local-storage");
 class AdminLogin extends Component {
@@ -9,18 +11,27 @@ class AdminLogin extends Component {
       pword: "",
     };
   }
+
+  componentDidMount() {
+    setTimeout(function () {
+      $("#loader").hide();
+    }, 2000);
+  }
+
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
   onSubmit = (e) => {
     e.preventDefault();
     const { uname, pword } = this.state;
+    $("#loader").show();
     axios
       .post(process.env.REACT_APP_SERVER_URL + "/api/users/login-admin", {
         username: uname,
         password: pword,
       })
       .then(function (response) {
+        $("#loader").hide();
         if (response.status == 200) {
           window.location = "/adminverify";
         }
@@ -29,12 +40,18 @@ class AdminLogin extends Component {
         } catch (error) {
           console.log(error);
         }
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Invalid credentials")
+        $("#loader").hide();
       });
   };
   render() {
     const { uname, pword } = this.state;
     return (
       <div>
+        <div id="loader"></div>
         <div>
           <div>
             <div>
