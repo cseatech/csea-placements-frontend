@@ -43,8 +43,15 @@ class ViewExp extends Component {
 
 
   savestate(ind) {
-    console.log(this.state.dets[ind])
-    localStorage.set('indets', this.state.dets[ind])
+    var temp = this.state.dets;
+    if (this.state.type == 'Placement') {
+      temp = this.state.dets.filter((elem) => elem.type.toLowerCase() == 'placement')
+    }
+    if (this.state.type == 'Intern') {
+      temp = this.state.dets.filter((elem) => elem.type.toLowerCase() == 'intern')
+    }
+
+    localStorage.set('indets', temp[ind])
     const { _id, name, year, company, exptext, linkedinlink, experiencefile } = localStorage.get('indets')
 
     axios.get(process.env.REACT_APP_SERVER_URL + '/api/experiences/getfile/' + _id).then(function (response) {
