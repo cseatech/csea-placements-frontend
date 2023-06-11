@@ -20,7 +20,9 @@ class ViewExp extends Component {
       onload: true,
       emptydata: false,
       search_text: '',
-      active_company: 'All'
+      active_company: 'All',
+      type: 'All',
+      companyList: []
     }
     this.searchRef = React.createRef();
     this.buttonRef = React.createRef();
@@ -33,6 +35,10 @@ class ViewExp extends Component {
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onTypeClick = (e) => {
+    this.setState({ type: e.target.textContent });
   }
 
 
@@ -70,42 +76,43 @@ class ViewExp extends Component {
       .catch((e) => {
         window.alert(e)
       })
-    // $(window).on("load", function () {
-    //   $("#loader").fadeOut(15000);
-    // });
-    //   $('#search_text').keydown(function() {
-    //     $('input').keyup(function(event) {
-    //         if (event.which === 13)
-    //         {
-    //             event.preventDefault();
-    //             $('#search_button').click();
-    //         }
-    //     });
-    // });
+
+    axios.get(process.env.REACT_APP_SERVER_URL + '/api/experiences/companies', { mode: 'cors' }).then(function (response) {
+      self.setState({ companyList: response.data.message })
+    })
+      .catch((e) => {
+        window.alert(e)
+      })
+
   }
 
   displayExp = (dets) => {
-    return dets.map((det, index) =>
-    (
-      <div key={index} class="card-category-1">
+    if (!dets || dets.length == 0) {
+      return <center style={{ margin: '2rem 0' }}><h3>No experiences available yet!</h3></center>
+    }
+    return <div class="container-sidebar">
+      {dets.map((det, index) =>
+      (
+        <div key={index} class="card-category-1">
 
-        <div class="basic-card basic-card-aqua">
-          <div class="card-content">
-            {det.linkedinlink != "-" ? <a style={{ color: "white" }} href={det.linkedinlink} target='_blank'>
-              <span class="card-title">{det.name}</span>
-            </a> : <span class="card-title">{det.name}</span>}
-            <p class="card-text">
-              {det.company}<br></br>
-              {det.year}
-            </p>
-          </div>
-          <div class="card-link" onClick={() => this.savestate(index)} style={{ color: `white`, cursor: `pointer` }}>
-            <span><u>Read Article</u> </span>
+          <div class="basic-card basic-card-aqua">
+            <div class="card-content">
+              {det.linkedinlink != "-" ? <a style={{ color: "white" }} href={det.linkedinlink} target='_blank'>
+                <span class="card-title">{det.name}</span>
+              </a> : <span class="card-title">{det.name}</span>}
+              <p class="card-text">
+                {det.company}<br></br>
+                {det.year}
+              </p>
+            </div>
+            <div class="card-link" onClick={() => this.savestate(index)} style={{ color: `white`, cursor: `pointer` }}>
+              <span><u>Read Article</u> </span>
+            </div>
+            <div class="card-type">{det.type}</div>
           </div>
         </div>
-      </div>
-
-    ))
+      ))}
+    </div>
   }
 
 
@@ -272,12 +279,17 @@ class ViewExp extends Component {
           </div>
         </MDBCol>
         <br />
+        <div class="tags">
+          <button onClick={this.onTypeClick} className={this.state.type == 'All' ? 'active' : ''}>All</button>
+          <button onClick={this.onTypeClick} className={this.state.type == 'Placement' ? 'active' : ''}>Placement</button>
+          <button onClick={this.onTypeClick} className={this.state.type == 'Intern' ? 'active' : ''}>Intern</button>
+        </div>
         <div style={{ float: `left`, paddingTop: `10px`, height: `65vh`, width: `20%`, overflow: `hidden`, overflowY: `scroll` }} className="sidebar-list">
           <MDBListGroup style={{ width: "20rem" }}>
             <span onClick={() => { this.searchlist({ company: 'All' }); this.setState({ active_company: "All" }); }}>
               <MDBListGroupItem style={{ cursor: `pointer` }} className={this.state.active_company == "All" ? 'active-sidebar' : ''}>All</MDBListGroupItem>
             </span>
-            {cmpnylist.map((company) => (
+            {this.state.companyList.map((company) => (
 
               <span onClick={() => { this.searchlist({ company }); this.setState({ active_company: company }); }}>
                 <MDBListGroupItem style={{ cursor: `pointer` }} className={this.state.active_company == company ? 'active-sidebar' : ''}>{company}</MDBListGroupItem>
@@ -295,9 +307,9 @@ class ViewExp extends Component {
 
         }
         <div style={{ paddingTop: `30px` }}>
-          <div class="container-sidebar">
-            {this.displayExp(this.state.dets)}
-          </div>
+          {this.state.type == 'All' ? this.displayExp(this.state.dets) : ''}
+          {this.state.type == 'Placement' ? this.displayExp(this.state.dets.filter((elem) => elem.type.toLowerCase() == 'placement')) : ''}
+          {this.state.type == 'Intern' ? this.displayExp(this.state.dets.filter((elem) => elem.type.toLowerCase() == 'intern')) : ''}
         </div>
 
         {this.state.emptydata ? <center><h3>No experiences available yet!</h3></center> : null}

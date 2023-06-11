@@ -21,6 +21,7 @@ class Experience_post extends Component {
       company: '',
       linkedIn: '',
       selectedFile: '',
+      type: 'Placement',
       post: false,
       unpost: false,
       validname: false,
@@ -36,8 +37,9 @@ class Experience_post extends Component {
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
+
   onSubmit = (e) => {
-    const { uname, email, year, company, linkedIn, selectedFile } = this.state;
+    const { uname, email, year, company, linkedIn, selectedFile, type } = this.state;
     this.setState({ validname: false, validyear: false, validcompany: false, validemail: false, validlinkedin: false, validfile: false })
     let formData = new FormData();
     if (this.state.uname !== "" && this.state.email !== "" &&
@@ -48,18 +50,15 @@ class Experience_post extends Component {
       formData.append('company', company);
       formData.append('linkedIn', linkedIn);
       formData.append('selectedFile', result);
-      const ss = { uname: uname, email: email, year: year, company: company, linkedIn: linkedIn, selectedFile: selectedFile }
+      formData.append('type', type);
+
       const headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       }
 
-
-
-      axios.post(process.env.REACT_APP_SERVER_URL + '/api/experiences/add-exp', { uname: uname, email: email, year: year, company: company, linkedIn: linkedIn, selectedFile: selectedFile }, { headers: headers }).then(res => {
+      axios.post(process.env.REACT_APP_SERVER_URL + '/api/experiences/add-exp', { uname: uname, email: email, type: type, year: year, company: company, linkedIn: linkedIn, selectedFile: selectedFile }, { headers: headers }).then(res => {
         this.setState({ post: true });
-
-
       }).catch(err => console.error(err));
 
     }
@@ -122,7 +121,7 @@ class Experience_post extends Component {
 
   }
   render() {
-    const { uname, email, year, company, linkedIn, selectedFile } = this.state;
+    const { uname, email, year, company, linkedIn, selectedFile, type } = this.state;
 
     return (
       <div>
@@ -211,6 +210,12 @@ class Experience_post extends Component {
                       <input type="email" class="form-control-post" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" name="email" value={email} onChange={this.onChange} />
                       <br />
                       {this.state.validemail ? <center><p class="help-block text-danger">Please enter valid email</p></center> : null}
+                    </div>
+                    <div class="control-group">
+                      <select name='type' value={type} onChange={this.onChange}>
+                        <option>Placement</option>
+                        <option>Intern</option>
+                      </select>
                     </div>
                     <div class="control-group">
                       <input type="text" class="form-control-post" id="subject" placeholder="Year of Passing Out" required="required" data-validation-required-message="Please enter the year of interview" name="year" value={year} onChange={this.onChange} />
