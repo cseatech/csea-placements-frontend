@@ -100,9 +100,9 @@ class HomePage extends Component {
         rect.top >= 0 &&
         rect.left >= 0 &&
         rect.bottom <=
-          (window.innerHeight || document.documentElement.clientHeight) &&
+        (window.innerHeight || document.documentElement.clientHeight) &&
         rect.right <=
-          (window.innerWidth || document.documentElement.clientWidth)
+        (window.innerWidth || document.documentElement.clientWidth)
       );
     }
 
@@ -1317,7 +1317,7 @@ class HomePage extends Component {
                 <a
                   class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
                   style={{ width: `38px`, height: `38px` }}
-                  href="https://www.linkedin.com/in/aarti-v-a33963180/"
+                  href="https://www.linkedin.com/in/aarti-v/"
                   target="_blank"
                 >
                   <i class="fab fa-linkedin-in"></i>
@@ -1398,7 +1398,7 @@ class HomePage extends Component {
                 <a
                   class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
                   style={{ width: `38px`, height: `38px` }}
-                  href="https://www.linkedin.com/in/gauthamkumarganesan//"
+                  href="https://www.linkedin.com/in/gauthamkumarganesan/"
                   target="_blank"
                 >
                   <i class="fab fa-linkedin-in"></i>
