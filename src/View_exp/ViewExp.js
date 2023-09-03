@@ -4,7 +4,8 @@ import React, { Component } from 'react'
 import './style.css';
 import { MDBListGroup, MDBListGroupItem, MDBIcon, MDBCol, MDBBtn } from 'mdbreact';
 // import { HashLink as Link } from "react-router-hash-link";
-import cseaLogo1 from "../assets/img/csea_black1.png"
+// import cseaLogo1 from "../assets/img/csea_black1.png"
+import cseaLogo1 from "../assets/img/csea-new-black1.png";
 // import { $ } from "react-jquery-plugin";
 const localStorage = require('local-storage')
 

@@ -3,7 +3,8 @@ import logo from "../assets/img/logo2.png";
 import { $ } from 'react-jquery-plugin'
 import axios from 'axios';
 import FileBase64 from 'react-file-base64';
-import cseaLogo1 from "../assets/img/csea_black1.png";
+// import cseaLogo1 from "../assets/img/csea_black1.png";
+import cseaLogo1 from "../assets/img/csea-new-black1.png";
 const validator = require('validator')
 
 var result = ''

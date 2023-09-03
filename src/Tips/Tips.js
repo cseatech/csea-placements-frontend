@@ -2,7 +2,8 @@
 import React, { Component } from "react";
 import jQuery from "jquery";
 import "./style.css";
-import cseaLogo1 from "../assets/img/csea_black1.png";
+// import cseaLogo1 from "../assets/img/csea_black1.png";
+import cseaLogo1 from "../assets/img/csea-new-black1.png";
 class Tips extends Component {
   
   

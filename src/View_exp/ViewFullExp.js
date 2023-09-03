@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import './style.css';
 import ReactDOM from 'react-dom';
-import cseaLogo1 from "../assets/img/csea_black1.png"
+// import cseaLogo1 from "../assets/img/csea_black1.png"
+import cseaLogo1 from "../assets/img/csea-new-black1.png";
 import { HashLink as Link } from 'react-router-hash-link';
 import {
   BrowserView,

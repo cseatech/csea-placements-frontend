@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import cseaLogo from "../assets/img/csea black.png";
-import cseaLogo1 from "../assets/img/csea_black1.png";
+// import cseaLogo from "../assets/img/csea black.png";
+import cseaLogo from "../assets/img/csea-new-black.png"
+// import cseaLogo1 from "../assets/img/csea_black1.png";
+import cseaLogo1 from "../assets/img/csea-new-black1.png"
 import TipsLogo from "../assets/img/preparation.jpeg";
 import ExperianceLogo from "../assets/img/interview.png";
 import PostLogo from "../assets/img/post.jpg";
@@ -1496,10 +1498,10 @@ class HomePage extends Component {
                 <h4 class="fa fa-phone-alt text-primary"></h4>
                 <div class="pl-3">
                   <h5 class="text-white">Phone</h5>
-                  <p>Mahjabeen A</p>
-                  <p>+91 8825649922</p>
-                  <p>Pranav Chandar KR</p>
-                  <p>+91 9715223575</p>
+                  <p>Saran T</p>
+                  <p>+91 96005 44132</p>
+                  <p>Sruthi Murali</p>
+                  <p>+91 80562 84967</p>
                 </div>
               </div>
             </div>
