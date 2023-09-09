@@ -13149,3 +13149,29 @@ MDBListGroupItem {
   color: white;
   background-image: linear-gradient(to bottom right, #00bfad, #99a3d4);
 }
+
+.pdf-container {
+  position: fixed;
+  background-color: var(--gray-dark);
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  width: 60%;
+  height: 100%;
+  padding: 0.5em;
+  display: flex;
+  margin: 0.25em;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  box-shadow: 0 0 5em 0.5em #000b0f;
+}
+
+.pdf-container .close {
+  color: wheat;
+  cursor: pointer;
+}
+
+.pdf-viewer {
+  display: block;
+}
