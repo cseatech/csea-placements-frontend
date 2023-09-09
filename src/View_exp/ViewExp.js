@@ -60,19 +60,22 @@ class ViewExp extends Component {
 
     axios.get(process.env.REACT_APP_SERVER_URL + '/api/experiences/getfile/' + _id).then(function (response) {
       var strj = response.data.message[0].experiencefile
-      self.setState({ pdfResponse: strj });
       var base64 = btoa(
         new Uint8Array(strj)
           .reduce((data, byte) => data + String.fromCharCode(byte), '')
       );
 
-      // console.log(base64.toString())
-      // const downloadLink = document.createElement("a");
-      // const fileName = "Experience" + "_" + name + ".pdf";
-      // downloadLink.href = strj;
-      // downloadLink.download = fileName;
-      // downloadLink.click()
-
+      const mql = window.matchMedia('(max-width:600px');
+      if (mql.matches) {
+        console.log(base64.toString())
+        const downloadLink = document.createElement("a");
+        const fileName = "Experience" + "_" + name + ".pdf";
+        downloadLink.href = strj;
+        downloadLink.download = fileName;
+        downloadLink.click()  
+      } else {
+        self.setState({ pdfResponse: strj });
+      }
     })
       .catch((e) => {
 
