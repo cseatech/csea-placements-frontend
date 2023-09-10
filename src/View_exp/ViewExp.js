@@ -2,8 +2,9 @@
 
 import React, { Component } from 'react'
 import './style.css';
+import { CloseSharp } from '@material-ui/icons';
 import { MDBListGroup, MDBListGroupItem, MDBIcon, MDBCol, MDBBtn } from 'mdbreact';
-// import { HashLink as Link } from "react-router-hash-link";
+// import { HashLink as Link }   from "react-router-hash-link";
 // import cseaLogo1 from "../assets/img/csea_black1.png"
 import cseaLogo1 from "../assets/img/csea-new-black1.png";
 // import { $ } from "react-jquery-plugin";
@@ -23,7 +24,8 @@ class ViewExp extends Component {
       search_text: '',
       active_company: 'All',
       type: 'All',
-      companyList: []
+      companyList: [],
+      pdfResponse: ''
     }
     this.searchRef = React.createRef();
     this.buttonRef = React.createRef();
@@ -45,6 +47,7 @@ class ViewExp extends Component {
 
   savestate(ind) {
     var temp = this.state.dets;
+    var self = this;
     if (this.state.type == 'Placement') {
       temp = this.state.dets.filter((elem) => elem.type.toLowerCase() == 'placement')
     }
@@ -62,13 +65,17 @@ class ViewExp extends Component {
           .reduce((data, byte) => data + String.fromCharCode(byte), '')
       );
 
-      console.log(base64.toString())
-      const downloadLink = document.createElement("a");
-      const fileName = "Experience" + "_" + name + ".pdf";
-      downloadLink.href = strj;
-      downloadLink.download = fileName;
-      downloadLink.click()
-
+      const mql = window.matchMedia('(max-width:600px');
+      if (mql.matches) {
+        console.log(base64.toString())
+        const downloadLink = document.createElement("a");
+        const fileName = "Experience" + "_" + name + ".pdf";
+        downloadLink.href = strj;
+        downloadLink.download = fileName;
+        downloadLink.click()  
+      } else {
+        self.setState({ pdfResponse: strj });
+      }
     })
       .catch((e) => {
 
@@ -120,6 +127,23 @@ class ViewExp extends Component {
           </div>
         </div>
       ))}
+      {
+        this.state.pdfResponse != '' &&
+        <div class="pdf-container">
+          <div class="close" onClick={() => this.setState({pdfResponse : ''})}> 
+          <CloseSharp />
+          </div>
+          <embed
+                  src={this.state.pdfResponse}
+                  id="displayFile"
+                  alt="pdf"
+                  width="100%"
+                  height="100%"
+                  class="pdf-viewer"
+                  type="application/pdf"
+          />
+        </div>
+      }
     </div>
   }
 
