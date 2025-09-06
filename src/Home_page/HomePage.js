@@ -232,7 +232,7 @@ class HomePage extends Component {
                 </li>
                 <li>
                   <a href="/exp_view" class="nav-item nav-link">
-                    Experiences
+                    Experience
                   </a>
                 </li>
 
