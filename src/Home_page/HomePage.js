@@ -1499,9 +1499,9 @@ class HomePage extends Component {
                 <div class="pl-3">
                   <h5 class="text-white">Phone</h5>
                   <p>Kamalesh N</p>
-                  <p>+91 8610386055</p>
+                  <p>+91 86103 86055</p>
                   <p>Sulochana H</p>
-                  <p>+91 9025193250</p>
+                  <p>+91 90251 93250</p>
                 </div>
               </div>
             </div>
