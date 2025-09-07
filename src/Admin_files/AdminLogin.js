@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import jQuery from "jquery";
-import { $ } from "react-jquery-plugin";
+import { $ } from "jquery";
 const axios = require("axios");
 const localStorage = require("local-storage");
 class AdminLogin extends Component {
