@@ -6,7 +6,8 @@ class AdminVerify extends Component {
     constructor() {
         super();
         this.state = {
-            dets: []
+            dets: [],
+            loading: true,
         }
     }
 
