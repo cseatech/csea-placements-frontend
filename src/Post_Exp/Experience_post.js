@@ -14,7 +14,15 @@ var result = ''
 class Experience_post extends Component {
 
   componentDidMount() {
-
+    axios
+        .get(process.env.REACT_APP_SERVER_URL + "/api/experiences/companies")
+        /*.get("http://localhost:4000/api/experiences/companies")*/
+        .then(res => {
+            this.setState({
+                companies: res.data.message
+            });
+        })
+        .catch(err => console.log(err));
   }
   constructor() {
     super();
@@ -23,6 +31,7 @@ class Experience_post extends Component {
       email: '',
       year: '',
       company: '',
+      companies: [],
       linkedIn: '',
       selectedFile: '',
       type: 'Placement',
@@ -39,7 +48,15 @@ class Experience_post extends Component {
 
 
   onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    let value = e.target.value;
+
+    if (e.target.name === "company") {
+        value = value.replace(/\s+/g, " ");
+    }
+
+    this.setState({
+        [e.target.name]: value
+    });
   }
 
   onSubmit = (e) => {
@@ -52,7 +69,7 @@ class Experience_post extends Component {
       formData.append('uname', uname);
       formData.append('email', email);
       formData.append('year', year);
-      formData.append('company', company);
+      formData.append('company', normalizedCompany);
       formData.append('linkedIn', finalLinkedIn);
       formData.append('selectedFile', result);
       formData.append('type', type);
@@ -62,7 +79,19 @@ class Experience_post extends Component {
         'Accept': 'application/json'
       }
 
-      axios.post(process.env.REACT_APP_SERVER_URL + '/api/experiences/add-exp', { uname: uname, email: email, type: type, year: year, company: company, linkedIn: finalLinkedIn, selectedFile: selectedFile }, { headers: headers }).then(res => {
+      let normalizedCompany = company
+        .trim()
+        .replace(/\s+/g, " ");
+
+      const existingCompany = this.state.companies.find(c =>
+        c.trim().toLowerCase() === normalizedCompany.toLowerCase()
+      );
+
+      if (existingCompany) {
+        normalizedCompany = existingCompany;
+      }
+
+      axios.post(process.env.REACT_APP_SERVER_URL + '/api/experiences/add-exp', { uname: uname, email: email, type: type, year: year, company: normalizedCompany, linkedIn: finalLinkedIn, selectedFile: selectedFile }, { headers: headers }).then(res => {
         this.setState({ post: true });
          setTimeout(() => {
     this.setState({ redirect: true });
@@ -228,11 +257,35 @@ class Experience_post extends Component {
                       <br />
                       {this.state.validyear ? <center><p class="help-block text-danger">Please enter year</p></center> : null}
                     </div>
+                    {/*
                     <div class="control-group">
                       <input type="text" class="form-control-post" id="subject1" placeholder="Company" required="required" data-validation-required-message="Please enter your company" name="company" value={company} onChange={this.onChange} />
                       <br />
                       {this.state.validyear ? <center><p class="help-block text-danger">Please enter company</p></center> : null}
                     </div>
+                    */}
+
+                    <>
+                    <input
+                        type="text"
+                        className="form-control-post"
+                        id="subject1"
+                        placeholder="Company"
+                        name="company"
+                        value={company}
+                        onChange={this.onChange}
+                        list="company-list"
+                        autoComplete="off"
+                        required
+                    />
+                    <datalist id="company-list">
+                        {this.state.companies.map((company, index) => (
+                            <option key={index} value={company} />
+                        ))}
+                    </datalist>
+                    <br />
+                    </>
+
                     <div class="control-group">
                       <input class="form-control-post" rows="6" id="linkedIn" placeholder="LinkedIn URL (Optional )" data-validation-required-message="Please enter your linkedIn Link" name="linkedIn" value={linkedIn} onChange={this.onChange}></input>
                       <br />
