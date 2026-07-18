@@ -6,6 +6,7 @@ class AdminVerify extends Component {
     constructor() {
         super();
         this.state = {
+            companies: [],
             dets: [],
             loading: true,
         }
@@ -18,6 +19,15 @@ class AdminVerify extends Component {
             self.setState({ dets: response.data.message })
             $("#loader").hide();
         })
+        axios
+        .get(process.env.REACT_APP_SERVER_URL+"/api/experiences/companies")
+        .then(res=>{
+
+        this.setState({
+            companies:res.data.message
+        });
+
+        });
     }
 
     onSubmit = (e) => {
@@ -66,12 +76,13 @@ class AdminVerify extends Component {
                             <th style={{ padding: `10px` }}>Email</th>
                             <th style={{ padding: `10px` }}>LinkedIn Profile</th>
                             <th style={{ padding: `10px` }}>Company</th>
+                            <th style={{ padding: `10px` }}>Save</th>
                             <th style={{ padding: `10px` }}>Passing out year</th>
                             <th style={{ padding: `10px` }}>Type</th>
                             <th style={{ padding: `10px` }}>Experience file</th>
                             <th style={{ padding: `10px` }}>Verify</th>
                             <th style={{ padding: `10px` }}>Delete</th>
-                            {this.state.dets.map(function (item, key) {
+                            {this.state.dets.map((item, key) => {
                                 function download() {
                                     var strj = item.experiencefile
 
@@ -111,7 +122,66 @@ class AdminVerify extends Component {
                                             <td style={{ padding: `10px` }}>{item.name}</td>
                                             <td style={{ padding: `10px` }}>{item.email}</td>
                                             <td style={{ padding: `10px` }}>{item.linkedinlink}</td>
-                                            <td style={{ padding: `10px` }}>{item.company}</td>
+                                            <td>
+                                            <input
+                                                type="text"
+                                                defaultValue={item.company}
+                                                list={"company-list-"+item._id}
+                                                className="form-control"
+                                                value={item.company}
+                                                onChange={(e) => {
+                                                    const dets = [...this.state.dets];
+                                                    dets[key].company = e.target.value;
+                                                    this.setState({ dets });
+                                                }}
+                                            />
+                                            <datalist id={"company-list-"+item._id}>
+                                            {
+                                            this.state.companies.map(company=>
+                                            <option
+                                            key={company}
+                                            value={company}
+                                            />
+                                            )
+                                            }
+                                            </datalist>
+                                            </td>
+                                            <td style={{ padding: `10px` }}>
+                                            <button onClick={()=>{
+                                                let company = item.company
+                                                .trim()
+                                                .replace(/\s+/g, " ");
+
+                                                const existing = this.state.companies.find(
+                                                c => c.toLowerCase() === company.toLowerCase()
+                                                );
+
+                                                if (existing) {
+                                                company = existing;
+                                                }
+                                                axios.put(
+                                                    process.env.REACT_APP_SERVER_URL+
+                                                    "/api/experiences/update-company/"+item._id,
+                                                    {
+                                                        company:company
+                                                    },
+                                                    {
+                                                        headers:{
+                                                            Authorization:localStorage.get("authtoken")
+                                                        }
+                                                    }
+                                                ).then(() => {
+                                                    item.company = company;
+                                                    this.setState({
+                                                        dets: [...this.state.dets]
+                                                    });
+
+                                                    alert("Updated");
+                                                    });
+                                            }}>
+                                            Save
+                                            </button>
+                                            </td>
                                             <td style={{ padding: `10px` }}>{item.year}</td>
                                             <td style={{ padding: `10px` }}>{item.type}</td>
                                             <td style={{ padding: `10px` }}><button onClick={download}>Experience File</button></td>
