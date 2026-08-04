@@ -69,17 +69,8 @@ class Experience_post extends Component {
       formData.append('uname', uname);
       formData.append('email', email);
       formData.append('year', year);
-      formData.append('company', normalizedCompany);
-      formData.append('linkedIn', finalLinkedIn);
-      formData.append('selectedFile', result);
-      formData.append('type', type);
 
-      const headers = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-
-      let normalizedCompany = company
+        let normalizedCompany = company
         .trim()
         .replace(/\s+/g, " ");
 
@@ -89,6 +80,16 @@ class Experience_post extends Component {
 
       if (existingCompany) {
         normalizedCompany = existingCompany;
+      }
+
+      formData.append('company', normalizedCompany);
+      formData.append('linkedIn', finalLinkedIn);
+      formData.append('selectedFile', result);
+      formData.append('type', type);
+
+      const headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
       }
 
       axios.post(process.env.REACT_APP_SERVER_URL + '/api/experiences/add-exp', { uname: uname, email: email, type: type, year: year, company: normalizedCompany, linkedIn: finalLinkedIn, selectedFile: selectedFile }, { headers: headers }).then(res => {
