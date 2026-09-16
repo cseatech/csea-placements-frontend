@@ -1498,10 +1498,10 @@ class HomePage extends Component {
                 <h4 class="fa fa-phone-alt text-primary"></h4>
                 <div class="pl-3">
                   <h5 class="text-white">Phone</h5>
-                  <p>Kamalesh  N</p>
-                  <p>+91 86103 86055</p>
-                  <p>Sulochana H</p>
-                  <p>+91 90251 93250</p>
+                  <p>Jaison JV</p>
+                  <p>+91 90256 01119</p>
+                  <p>Varsha S</p>
+                  <p>+91 80562 46330</p>
                 </div>
               </div>
             </div>
